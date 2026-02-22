@@ -52,6 +52,10 @@
     --text-secondary: 220 10% 60%;
     --glass-border: 220 10% 25%;
     --glow-primary: 210 100% 56%;
+    --gradient-start: 210 100% 56%;
+    --gradient-end: 200 80% 42%;
+    --success: 160 60% 45%;
+    --chart-accent: 35 90% 55%;
   }
 }
 
@@ -87,4 +91,57 @@
     background: linear-gradient(90deg, transparent, hsl(var(--glow-primary) / 0.4), transparent);
     height: 1px;
   }
+
+  .btn-gradient {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(var(--gradient-end)), hsl(var(--gradient-start)));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .btn-gradient:hover::before {
+    opacity: 1;
+  }
+
+  .btn-gradient > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-gradient-outline {
+    border: 1px solid hsl(var(--glow-primary) / 0.4);
+    background: hsl(var(--glow-primary) / 0.05);
+  }
+
+  .btn-gradient-outline:hover {
+    border-color: hsl(var(--glow-primary) / 0.7);
+    background: hsl(var(--glow-primary) / 0.1);
+    box-shadow: 0 0 30px hsl(var(--glow-primary) / 0.1);
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 0 40px hsl(var(--glow-primary) / 0.08), 0 0 80px hsl(var(--glow-primary) / 0.04);
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
