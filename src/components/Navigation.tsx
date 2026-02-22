@@ -53,9 +53,9 @@ const Navigation = () => {
           </div>
           <a
             href="#ecosystem"
-            className="ml-2 rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="btn-gradient ml-2 rounded-full px-5 py-2 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
           >
-            Explore
+            <span>Explore</span>
           </a>
         </nav>
       </div>

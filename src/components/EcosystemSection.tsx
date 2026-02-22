@@ -22,14 +22,16 @@ const EcosystemCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-80px" }}
     transition={{ duration: 0.7, delay }}
-    className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-500"
+    className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-500 card-glow"
   >
     <div className="relative h-64 md:h-80 overflow-hidden">
-      <img
+      <motion.img
         src={image}
         alt={title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        className="w-full h-full object-cover"
         loading="lazy"
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.7 }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
     </div>
@@ -51,11 +53,13 @@ const EcosystemCard = ({
         {description}
       </p>
       <div className="mt-6">
-        <span className="text-sm text-primary font-medium inline-flex items-center gap-1.5 group-hover:gap-3 transition-all duration-300">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+        <span className="btn-gradient inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 cursor-pointer">
+          <span className="inline-flex items-center gap-1.5 group-hover:gap-3 transition-all duration-300">
+            {comingSoon ? "Join Waitlist" : "Learn more"}
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
         </span>
       </div>
     </div>
@@ -80,6 +84,9 @@ const EcosystemSection = () => {
             Two platforms. One mission.
           </h2>
         </motion.div>
+
+        {/* Separator glow line */}
+        <div className="glow-line w-full max-w-md mx-auto mb-20" />
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           <EcosystemCard
