@@ -1,0 +1,106 @@
+import { motion } from "framer-motion";
+import logisticsBg from "@/assets/logistics-bg.png";
+import fxBg from "@/assets/fx-bg.png";
+
+const EcosystemCard = ({
+  image,
+  label,
+  title,
+  description,
+  comingSoon,
+  delay,
+}: {
+  image: string;
+  label: string;
+  title: string;
+  description: string;
+  comingSoon?: boolean;
+  delay: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-80px" }}
+    transition={{ duration: 0.7, delay }}
+    className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-500"
+  >
+    <div className="relative h-64 md:h-80 overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+    </div>
+    <div className="relative p-8 md:p-10 -mt-16 z-10">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-xs tracking-[0.2em] uppercase text-primary font-medium">
+          {label}
+        </span>
+        {comingSoon && (
+          <span className="text-[10px] tracking-widest uppercase text-muted-foreground border border-border rounded-full px-3 py-0.5">
+            Coming Soon
+          </span>
+        )}
+      </div>
+      <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 leading-tight">
+        {title}
+      </h3>
+      <p className="text-muted-foreground leading-relaxed text-base">
+        {description}
+      </p>
+      <div className="mt-6">
+        <span className="text-sm text-primary font-medium inline-flex items-center gap-1.5 group-hover:gap-3 transition-all duration-300">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const EcosystemSection = () => {
+  return (
+    <section id="ecosystem" className="py-32 md:py-40">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <p className="text-sm tracking-[0.3em] uppercase text-primary mb-4">
+            Ecosystem
+          </p>
+          <h2 className="text-3xl md:text-5xl font-semibold text-gradient">
+            Two platforms. One mission.
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+          <EcosystemCard
+            image={logisticsBg}
+            label="Product A"
+            title="Storage & Logistics Marketplace"
+            description="Decoupling physical assets from complex trade. A marketplace connecting storage, transport, and logistics across global corridors."
+            delay={0.1}
+          />
+          <EcosystemCard
+            image={fxBg}
+            label="Product B"
+            title="FX Price Discovery"
+            description="Real-time transparency for cross-border capital facilitation. Institutional-grade pricing where legacy markets fall short."
+            comingSoon
+            delay={0.25}
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default EcosystemSection;
