@@ -22,7 +22,7 @@ const EcosystemCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-80px" }}
     transition={{ duration: 0.7, delay }}
-    className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-500 card-glow"
+    className="group relative rounded-2xl overflow-hidden glass-card card-hover-glow"
   >
     <div className="relative h-64 md:h-80 overflow-hidden">
       <motion.img
@@ -34,6 +34,17 @@ const EcosystemCard = ({
         transition={{ duration: 0.7 }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-card/30" style={{
+        backgroundImage: title.includes("FX") 
+          ? 'radial-gradient(circle at 80% 20%, hsl(240 100% 70% / 0.08) 0%, transparent 50%)'
+          : 'radial-gradient(circle at 20% 80%, hsl(270 91% 65% / 0.08) 0%, transparent 50%)'
+      }} />
+      {title.includes("FX") && (
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+      )}
+      {title.includes("Logistics") && (
+        <div className="absolute inset-0 industrial-overlay opacity-20" />
+      )}
     </div>
     <div className="relative p-8 md:p-10 -mt-16 z-10">
       <div className="flex items-center gap-3 mb-4">
@@ -41,12 +52,12 @@ const EcosystemCard = ({
           {label}
         </span>
         {comingSoon && (
-          <span className="text-[10px] tracking-widest uppercase text-muted-foreground border border-border rounded-full px-3 py-0.5">
+          <span className="text-[9px] tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 rounded-full px-3 py-0.5 pulse-glow">
             Coming Soon
           </span>
         )}
       </div>
-      <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 leading-tight">
+      <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 leading-tight font-display">
         {title}
       </h3>
       <p className="text-muted-foreground leading-relaxed text-base">
@@ -80,7 +91,7 @@ const EcosystemSection = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-primary mb-4">
             Ecosystem
           </p>
-          <h2 className="text-3xl md:text-5xl font-semibold text-gradient">
+          <h2 className="text-3xl md:text-5xl font-semibold text-gradient font-display">
             Two platforms. One mission.
           </h2>
         </motion.div>

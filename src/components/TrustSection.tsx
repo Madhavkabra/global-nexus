@@ -21,7 +21,7 @@ const partners = [
 
 const TrustSection = () => {
   return (
-    <section className="py-32 md:py-40 border-t border-border overflow-hidden">
+    <section className="py-32 md:py-40 overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Stats Grid */}
         <motion.div
@@ -34,7 +34,7 @@ const TrustSection = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-primary mb-4">
             Trust & Scale
           </p>
-          <h2 className="text-3xl md:text-5xl font-semibold text-gradient">
+          <h2 className="text-3xl md:text-5xl font-semibold text-gradient font-display">
             Infrastructure you can depend on
           </h2>
         </motion.div>
@@ -47,12 +47,12 @@ const TrustSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group text-center rounded-2xl border border-border bg-card p-6 md:p-8 card-glow transition-all duration-500 hover:border-primary/20"
+              className="group text-center rounded-2xl glass-card p-6 md:p-8 card-hover-glow"
             >
               <div className="mb-4 mx-auto inline-flex items-center justify-center w-10 h-10 rounded-xl bg-secondary">
                 <stat.icon className="w-4 h-4 text-primary" />
               </div>
-              <p className="text-2xl md:text-3xl font-bold text-foreground mb-1">
+              <p className="text-2xl md:text-3xl font-bold text-foreground mb-1 font-display">
                 {stat.value}
               </p>
               <p className="text-xs md:text-sm text-muted-foreground">

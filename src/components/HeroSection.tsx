@@ -26,6 +26,10 @@ const HeroSection = () => {
           transition={{ duration: 2, ease: "easeOut" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-background/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" style={{
+          backgroundImage: 'radial-gradient(circle at 50% 0%, hsl(270 91% 65% / 0.1) 0%, transparent 50%)'
+        }} />
       </div>
 
       {/* Floating particles */}
@@ -55,7 +59,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl md:text-7xl font-semibold leading-[1.08] text-gradient mb-8"
+          className="text-5xl md:text-7xl font-semibold leading-[1.08] text-gradient mb-8 font-display"
         >
           Structuring Global Trade{" "}
           <span className="block">& Capital Partnerships</span>

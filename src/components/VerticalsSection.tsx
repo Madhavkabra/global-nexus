@@ -42,7 +42,7 @@ const verticals = [
 
 const VerticalsSection = () => {
   return (
-    <section id="verticals" className="py-32 md:py-40 border-t border-border">
+    <section id="verticals" className="py-32 md:py-40">
       <div className="container mx-auto px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ const VerticalsSection = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-primary mb-4">
             Verticals
           </p>
-          <h2 className="text-3xl md:text-5xl font-semibold text-gradient mb-4">
+          <h2 className="text-3xl md:text-5xl font-semibold text-gradient mb-4 font-display">
             Built to scale across markets
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
@@ -71,14 +71,14 @@ const VerticalsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`group relative rounded-2xl border p-8 md:p-9 transition-all duration-500 card-glow ${
+              className={`group relative rounded-2xl p-8 md:p-9 transition-all duration-500 card-hover-glow ${
                 v.status === "active"
-                  ? "border-border bg-card hover:border-primary/25"
-                  : "border-dashed border-border/60 bg-card/40 hover:border-border"
+                  ? "glass-card"
+                  : "border border-dashed border-border/60 bg-card/40 hover:border-border"
               }`}
             >
               {v.status === "upcoming" && (
-                <span className="absolute top-4 right-4 text-[10px] tracking-widest uppercase text-muted-foreground border border-border rounded-full px-3 py-0.5">
+                <span className="absolute top-4 right-4 text-[9px] tracking-widest uppercase text-muted-foreground border border-border rounded-full px-3 py-0.5">
                   Upcoming
                 </span>
               )}
@@ -89,7 +89,7 @@ const VerticalsSection = () => {
                   v.status === "active" ? "text-primary" : "text-muted-foreground"
                 }`} />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2 font-display">
                 {v.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed text-sm">

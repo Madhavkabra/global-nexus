@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,7 +16,7 @@
     --popover: 220 14% 14%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 210 100% 56%;
+    --primary: 270 91% 65%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 10% 18%;
@@ -24,7 +25,7 @@
     --muted: 220 10% 20%;
     --muted-foreground: 220 10% 55%;
 
-    --accent: 210 20% 70%;
+    --accent: 240 100% 70%;
     --accent-foreground: 220 14% 11%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,18 +33,18 @@
 
     --border: 220 10% 20%;
     --input: 220 10% 20%;
-    --ring: 210 100% 56%;
+    --ring: 270 91% 65%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 220 14% 9%;
     --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 210 100% 56%;
+    --sidebar-primary: 270 91% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 10% 16%;
     --sidebar-accent-foreground: 0 0% 90%;
     --sidebar-border: 220 10% 18%;
-    --sidebar-ring: 210 100% 56%;
+    --sidebar-ring: 270 91% 65%;
 
     /* Custom tokens */
     --surface: 220 14% 13%;
@@ -51,9 +52,10 @@
     --cyber-silver: 220 10% 75%;
     --text-secondary: 220 10% 60%;
     --glass-border: 220 10% 25%;
-    --glow-primary: 210 100% 56%;
-    --gradient-start: 210 100% 56%;
-    --gradient-end: 200 80% 42%;
+    --glow-primary: 270 91% 65%;
+    --gradient-start: 270 91% 65%;
+    --gradient-end: 240 100% 70%;
+    --gradient-mid: 255 85% 68%;
     --success: 160 60% 45%;
     --chart-accent: 35 90% 55%;
   }
@@ -66,69 +68,201 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    line-height: 1.6;
+    background:
+      radial-gradient(circle at 20% 30%, hsl(270 91% 65% / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, hsl(240 100% 70% / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, hsl(255 85% 68% / 0.05) 0%, transparent 50%),
+      hsl(220 14% 11%);
+    background-attachment: fixed;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply tracking-tight;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  p,
+  span,
+  div {
+    line-height: 1.7;
   }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(0 0% 100%), hsl(var(--cyber-silver)));
+    background-image: linear-gradient(135deg, hsl(270 91% 75%), hsl(240 100% 80%), hsl(255 85% 75%));
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
   }
 
   .glass-surface {
-    background: hsl(var(--surface) / 0.6);
-    backdrop-filter: blur(24px);
-    border: 1px solid hsl(var(--glass-border) / 0.5);
+    background: linear-gradient(135deg,
+        hsl(var(--surface) / 0.3) 0%,
+        hsl(var(--surface) / 0.2) 100%);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid hsl(255 255% 255% / 0.08);
+  }
+
+  .glass-card {
+    background: linear-gradient(135deg,
+        hsl(var(--card) / 0.25) 0%,
+        hsl(var(--card) / 0.15) 100%);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        hsl(270 91% 65% / 0.03) 0%,
+        transparent 50%,
+        hsl(240 100% 70% / 0.03) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-card>* {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-nav {
+    background: linear-gradient(to bottom,
+        hsl(var(--background) / 0.8) 0%,
+        hsl(var(--background) / 0.6) 100%);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
   }
 
   .glow-line {
-    background: linear-gradient(90deg, transparent, hsl(var(--glow-primary) / 0.4), transparent);
-    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        hsl(var(--gradient-start) / 0.2) 20%,
+        hsl(var(--gradient-mid) / 0.4) 50%,
+        hsl(var(--gradient-end) / 0.2) 80%,
+        transparent 100%);
+    height: 2px;
+    box-shadow: 0 0 20px hsl(var(--gradient-mid) / 0.3);
   }
 
   .btn-gradient {
-    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-mid)), hsl(var(--gradient-end)));
+    background-size: 200% 200%;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 20px hsl(var(--gradient-start) / 0.3);
+    transition: all 0.4s ease;
   }
 
   .btn-gradient::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, hsl(var(--gradient-end)), hsl(var(--gradient-start)));
+    background: linear-gradient(135deg, hsl(var(--gradient-end)), hsl(var(--gradient-mid)), hsl(var(--gradient-start)));
+    background-size: 200% 200%;
     opacity: 0;
     transition: opacity 0.4s ease;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .btn-gradient:hover {
+    background-position: 100% 50%;
+    box-shadow: 0 6px 30px hsl(var(--gradient-start) / 0.4);
+    transform: translateY(-1px);
   }
 
   .btn-gradient:hover::before {
     opacity: 1;
   }
 
-  .btn-gradient > * {
+  .btn-gradient>* {
     position: relative;
     z-index: 1;
   }
 
   .btn-gradient-outline {
-    border: 1px solid hsl(var(--glow-primary) / 0.4);
-    background: hsl(var(--glow-primary) / 0.05);
+    background: linear-gradient(135deg, hsl(var(--gradient-start) / 0.08), hsl(var(--gradient-end) / 0.08));
+    border: 1px solid hsl(var(--gradient-start) / 0.3);
+    position: relative;
+    transition: all 0.3s ease;
   }
 
   .btn-gradient-outline:hover {
-    border-color: hsl(var(--glow-primary) / 0.7);
-    background: hsl(var(--glow-primary) / 0.1);
-    box-shadow: 0 0 30px hsl(var(--glow-primary) / 0.1);
+    border-color: hsl(var(--gradient-start) / 0.6);
+    background: linear-gradient(135deg, hsl(var(--gradient-start) / 0.15), hsl(var(--gradient-mid) / 0.12), hsl(var(--gradient-end) / 0.15));
+    box-shadow: 0 4px 20px hsl(var(--gradient-start) / 0.25), inset 0 1px 0 hsl(255 255% 255% / 0.1);
   }
 
   .card-glow:hover {
-    box-shadow: 0 0 40px hsl(var(--glow-primary) / 0.08), 0 0 80px hsl(var(--glow-primary) / 0.04);
+    box-shadow: 0 8px 24px hsl(0 0% 0% / 0.12), 0 4px 8px hsl(0 0% 0% / 0.08);
+  }
+
+  .card-hover-glow {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover-glow:hover {
+    transform: scale(1.02);
+    box-shadow:
+      0 20px 40px hsl(0 0% 0% / 0.15),
+      0 8px 16px hsl(0 0% 0% / 0.1),
+      inset 0 1px 0 hsl(255 255% 255% / 0.1);
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(hsl(220 10% 25% / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(220 10% 25% / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 6px hsl(var(--gradient-start) / 0.3), 0 0 12px hsl(var(--gradient-end) / 0.2);
+    }
+
+    50% {
+      box-shadow: 0 0 12px hsl(var(--gradient-start) / 0.5), 0 0 24px hsl(var(--gradient-end) / 0.3);
+    }
+  }
+
+  .industrial-overlay {
+    background-image:
+      linear-gradient(45deg, transparent 40%, hsl(220 10% 25% / 0.05) 50%, transparent 60%),
+      linear-gradient(-45deg, transparent 40%, hsl(220 10% 25% / 0.05) 50%, transparent 60%);
+    background-size: 40px 40px;
   }
 
   .marquee-track {
@@ -142,6 +276,11 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
